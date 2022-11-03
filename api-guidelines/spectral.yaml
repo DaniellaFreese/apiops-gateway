@@ -1,0 +1,16 @@
+rules:
+  acme-bank-tags:
+    description: Tags must have a description.
+    given: $.tags[*]
+    severity: error
+    then:
+      field: description
+      function: truthy
+  
+  acme-bank-request-no-PATCH:
+    description: "No PATCH requests permitted"
+    severity: error
+    given: $.paths.*.[patch]
+    then:
+      function: falsy
+

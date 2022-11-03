@@ -1,0 +1,23 @@
+name: Custom Linting Rules on Pull Request
+
+on:
+  pull_request:
+    types: 
+      - opened
+      - reopened
+    branches:
+      - 'dev/**'
+
+jobs:
+  build:
+    name: Run Spectral
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the repository
+      - uses: actions/checkout@v2
+
+      # Run Spectral
+      - uses: stoplightio/spectral-action@latest
+        with:
+          file_glob: 'api-guielines/*.yaml'
+      
