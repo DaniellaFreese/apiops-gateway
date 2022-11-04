@@ -1,4 +1,4 @@
-name: Custom Linting Rules on Pull Request
+name: Custom Lint Dev
 
 on:
   pull_request:
