@@ -1,4 +1,4 @@
-name: Custom Linting Rules on Pull Request
+name: Custom Lint Dev
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - opened
       - reopened
     branches:
-      - 'dev/**'
+      - 'dev'
 
 jobs:
   build:
@@ -19,5 +19,5 @@ jobs:
       # Run Spectral
       - uses: stoplightio/spectral-action@latest
         with:
-          file_glob: 'api-guielines/*.yaml'
-      
+          file_glob: 'devportal/*/*.yaml'
+          spectral_ruleset: api-guielines/spectral.yaml
