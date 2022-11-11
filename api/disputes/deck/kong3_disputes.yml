@@ -1,0 +1,50 @@
+_format_version: "3.0"
+services:
+- connect_timeout: 30000
+  host: localhost
+  name: disputes
+  path: /sandbox
+  port: 80
+  protocol: http
+  read_timeout: 30000
+  retries: 10
+  routes:
+  - methods:
+    - GET
+    name: disputes-getListDispute
+    paths:
+    - ~/disputes$
+    protocols:
+    - http
+    strip_path: false
+    tags:
+    - OAS3_import
+    - OAS3file_apispec_disputes.yml
+    - disputes
+  - methods:
+    - GET
+    name: disputes-getDispute
+    paths:
+    - ~/dispute/(?<id>[^\/]+)$
+    plugins:
+    - config:
+        hide_credentials: true
+        key_names:
+        - mykey
+        - yourkey
+        run_on_preflight: false
+      name: key-auth
+      tags:
+      - OAS3_import
+      - OAS3file_apispec_disputes.yml
+      - disputes
+    strip_path: false
+    tags:
+    - OAS3_import
+    - OAS3file_apispec_disputes.yml
+    - disputes
+  tags:
+  - OAS3_import
+  - OAS3file_apispec_disputes.yml
+  - disputes
+  write_timeout: 30000
